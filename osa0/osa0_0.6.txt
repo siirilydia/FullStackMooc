@@ -1,0 +1,26 @@
+title Uusi muistiinpano SPA
+
+note over selain:
+Selain suorittaa tapahtumankäsittelijän,
+joka estää oletusarvoisesti tapahtuvan
+lomakkeen lähettämisen ja sivun uudelleen
+lataamisen.
+end note
+note over selain:
+Samassa tapahtumankäsittelijässä luodaan
+uusi muistiinpano, lisätään se muistiinpanojen
+listaan ja piirretään ruudun sisältö uudestaan.
+end note
+
+selain->palvelin: HTTP POST ttps://fullstack-exampleapp.herokuapp.com/new_note_spa
+note over selain:
+Pyyntö sisältää uuden muistiinpanon JSON-muodossa.
+Tähän kuuluu sisältö (content) ja aikaleima (date).
+Content-Type: application/json; kertoo palvelimelle,
+miten data tulee parsia.
+end note
+palvelin-->selain: Statuskoodi 201 created
+
+
+
+
