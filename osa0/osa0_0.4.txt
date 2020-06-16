@@ -1,0 +1,32 @@
+title HTTP POST
+
+selain->palvelin: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note
+note over palvelin:
+palvelin saa datan pyynnön mukana
+bodynä, viittaa siihen "req.body.note"
+end note
+note over palvelin:
+palvelin luo datasta uuden olion,
+lisää sille päivämäärän ja laittaa
+tämän olion notes-taulukkoon
+end note
+palvelin-->selain: 302 uudelleenohjauspyyntö, Location: /notes
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/notes
+palvelin-->selain: HTML-koodi
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
+palvelin-->selain: main.css
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.js
+palvelin-->selain: main.js
+
+note over selain:
+selain suorittaa js-koodin, joka
+pyytää palvelimelta JSON-datan
+end note
+
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
+palvelin-->selain: [{content: "Pubut on söböi", date: "2020-06-16T06:29:49.713Z"}, ...]
+
+note over selain:
+selain suorittaa tapahtumankäsittelijän,
+joka renderöi muistiinpanot näytölle
+end note
