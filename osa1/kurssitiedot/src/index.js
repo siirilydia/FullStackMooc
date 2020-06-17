@@ -9,7 +9,18 @@ const Header = (props) => {
   )
 }
 
+//Contentiin voisi välittää vain listan jossa kaikki kurssitiedot?
 const Content = (props) => {
+  return (
+    <div>
+    <Part part={props.part1} exercises={props.exc1}/>
+    <Part part={props.part2} exercises={props.exc2}/>
+    <Part part={props.part3} exercises={props.exc3}/>
+    </div>
+  )
+}
+
+const Part = (props) => {
   return (
     <p>
       {props.part} {props.exercises}
@@ -20,7 +31,6 @@ const Content = (props) => {
 // Ajattelin välittää Totaliin vain yhtenä propsina arrayn, joka sisältää
 // kaikki osioiden harjoitusten määrät, mutta en lähde nyt keulimaan
 // jos koodia ollaan kuitenkin refaktoroimassa myöhemmissä harjoituksissa.
-
 const Total = (props) => {
   return (
     <p>
@@ -41,9 +51,7 @@ const App = () => {
   return (
     <div>
       <Header headertext={course}/>
-      <Content part={part1} exercises={exercises1} />
-      <Content part={part2} exercises={exercises2} />
-      <Content part={part3} exercises={exercises3} />
+      <Content part1={part1} exc1={exercises1} part2={part2} exc2={exercises2} part3={part3} exc3={exercises3} />
       <Total exc1={exercises1} exc2={exercises2} exc3={exercises3}/>
     </div>
   )
