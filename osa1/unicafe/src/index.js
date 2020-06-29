@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 const Button = (props) => (
   <button onClick={props.handleClick}>{props.text}</button>
 )
-  
+
 const Statistics = (props) => {
     
   const average = () => {
@@ -28,7 +28,9 @@ const Statistics = (props) => {
       }
     })
 
-    return goodAmount/props.allRatings.length*100
+    return (
+      <>{goodAmount/props.allRatings.length*100}%</>
+    )
   }
       
   if (props.allRatings.length === 0) {
@@ -42,12 +44,20 @@ const Statistics = (props) => {
   return(
     <div>
       <h1>statistics</h1>
-      good {props.good}
-      <br/>neutral {props.neutral}
-      <br/>bad {props.bad}
-      <br/>all {props.allRatings.length}
-      <br/>average {average()}
-      <br/>positive {goodReviews()}%
+      <StatisticsLine text='good' value={props.good} />
+      <StatisticsLine text='neutral' value={props.neutral} />
+      <StatisticsLine text='bad' value={props.bad} />
+      <StatisticsLine text='all' value={props.allRatings.length} />
+      <StatisticsLine text='average' value={average()} />
+      <StatisticsLine text='positive' value={goodReviews()} />
+    </div>
+  )
+}
+
+const StatisticsLine = (props) => {
+  return (
+    <div>
+      {props.text} {props.value}
     </div>
   )
 }
@@ -57,7 +67,6 @@ const App = () => {
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
   const [allRatings, setRating] = useState([])
-  
   
   const handleGoodClick = () => {
     setGood(good +1 )
