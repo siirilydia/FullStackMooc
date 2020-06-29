@@ -10,23 +10,43 @@ const App = () => {
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
+  const [allRatings, setRating] = useState([])
+  
+  const average = () => {
+    let total = 0
+    allRatings.forEach(rating => {
+      total += rating
+    })
+    return (
+       total/allRatings.length
+      )
+  }
 
-  // const setValue = (valueToSet, newValue) => {
-  //   valueToSet(newValue)
-  // }
+  const goodReviews = () => {
+    let goodAmount = 0
+    allRatings.forEach(rating => {
+      if (rating === 1){
+        goodAmount++
+      }
+    })
+    return goodAmount/allRatings.length*10
+  }
 
   const handleGoodClick = () => {
     setGood(good +1 )
+    setRating(allRatings.concat(1))
     console.log(good)
   }
 
   const handleNeutralClick = () => {
     setNeutral(neutral +1 )
+    setRating(allRatings.concat(0))
     console.log(neutral)
   }
   
   const handleBadClick = () => {
     setBad(bad +1 )
+    setRating(allRatings.concat(-1))
     console.log(bad)
   }
   
@@ -41,6 +61,9 @@ const App = () => {
       good {good}
       <br/> neutral {neutral}
       <br/> bad {bad}
+      <br/>all {allRatings.length}
+      <br/>average {average()}
+      <br/>positive {goodReviews()}%
     </div>
   )
 }
