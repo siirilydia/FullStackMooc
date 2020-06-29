@@ -29,27 +29,23 @@ const App = () => {
         goodAmount++
       }
     })
-    return goodAmount/allRatings.length*10
+    return goodAmount/allRatings.length*100
   }
 
   const handleGoodClick = () => {
     setGood(good +1 )
     setRating(allRatings.concat(1))
-    console.log(good)
   }
 
   const handleNeutralClick = () => {
     setNeutral(neutral +1 )
     setRating(allRatings.concat(0))
-    console.log(neutral)
   }
   
   const handleBadClick = () => {
     setBad(bad +1 )
     setRating(allRatings.concat(-1))
-    console.log(bad)
   }
-  
   
   return(
     <div>
@@ -62,8 +58,8 @@ const App = () => {
       <br/> neutral {neutral}
       <br/> bad {bad}
       <br/>all {allRatings.length}
-      <br/>average {average()}
-      <br/>positive {goodReviews()}%
+      <br/>average {allRatings.length !== 0 ? average() : null}
+      <br/>positive {allRatings.length !== 0 ? goodReviews() : null}%
     </div>
   )
 }
