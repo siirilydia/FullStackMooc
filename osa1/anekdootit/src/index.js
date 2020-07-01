@@ -1,10 +1,22 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
-const App = (props) => {
+const ShowAnecdote = ({header, text, points}) => {
+  return(
+   <div>
+     <h1>{header}</h1>
+      {text}
+      <br/>
+      has {points} votes
+   </div> 
+  )
+}
+
+const App = () => {
   const [selected, setSelected] = useState(0)
-  const [points, setPoints] = useState(Array.apply(null, new Array(props.anecdotes.length)).map(Number.prototype.valueOf,0))
+  const [points, setPoints] = useState(Array.apply(null, new Array(anecdotes.length)).map(Number.prototype.valueOf,0))
   const copy = [ ...points]
+  const mostVotes = points.indexOf(Math.max(...points))
   
   const randomAnecdote = () => {
     setSelected(Math.floor(Math.random() * anecdotes.length))
@@ -18,17 +30,11 @@ const App = (props) => {
 
   return (
     <div>
-      <h1>Anecdote of the day</h1>
-      {props.anecdotes[selected]}
-      <br/>
-      has {points[selected]} votes
+      <ShowAnecdote header='Anecdote of the day' text={anecdotes[selected]} points={points[selected]}/>
       <br/>
       <button onClick={() => addVote()}>vote</button>
       <button onClick={() => randomAnecdote()}>next anecdote</button>
-      <h1>Anecdote with most votes</h1>
-      {props.anecdotes[points.indexOf(Math.max(...points))]}
-      <br/>
-      has {points[points.indexOf(Math.max(...points))]} votes
+      <ShowAnecdote header='Anecdote with most votes' text={anecdotes[mostVotes]} points={points[mostVotes]}/> 
     </div>
   )
 }
@@ -43,6 +49,6 @@ const anecdotes = [
 ]
 
 ReactDOM.render(
-  <App anecdotes={anecdotes}/>,
+  <App />,
   document.getElementById('root')
 )
