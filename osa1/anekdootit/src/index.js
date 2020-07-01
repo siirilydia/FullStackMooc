@@ -38,6 +38,6 @@ const anecdotes = [
 ]
 
 ReactDOM.render(
-  <App anecdotes={anecdotes}/>,
+  <App anecdotes={anecdotes} />,
   document.getElementById('root')
 )
